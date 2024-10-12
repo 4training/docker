@@ -6,6 +6,8 @@ docker compose up
 
 Then you should be able to access it on port 8082 on your local computer: http://localhost:8082
 
+To change the port or make it available to other devices on your (local) network, see [.env](.env)
+
 ## Login
 When the system is running locally, you can login here: http://localhost:8082/Special:UserLogin
 
@@ -24,7 +26,10 @@ You can override a specific folder inside the docker container by mounting a hos
  mediawiki:
     image: 4training/mediawiki
     ports:
-      - "8082:80"
+      - "${MEDIAWIKI_PORT}:80"
+    environment:
+      MEDIAWIKI_HOST: ${MEDIAWIKI_HOST}
+      MEDIAWIKI_PORT: ${MEDIAWIKI_PORT}
     volumes:
       - vol-www:/var/www/html/mediawiki
       - /your/path/to/mediawiki-skins-ForTraining:/var/www/html/mediawiki/skins/ForTraining

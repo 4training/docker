@@ -7,9 +7,13 @@ services:
   mediawiki:
     image: 4training/mediawiki
     ports:
-      - "8082:80"
+      - "${MEDIAWIKI_PORT}:80"
+    environment:
+      MEDIAWIKI_HOST: ${MEDIAWIKI_HOST}
+      MEDIAWIKI_PORT: ${MEDIAWIKI_PORT}
     volumes:
       - vol-www:/var/www/html/mediawiki
+      - /home/samuel/coding/mediawiki/mediawiki-skins-ForTrainingNG:/var/www/html/mediawiki/skins/ForTrainingNG
 
 volumes:
   vol-www:
